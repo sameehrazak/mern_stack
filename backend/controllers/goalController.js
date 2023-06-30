@@ -48,14 +48,14 @@ const updateGoal = asyncHandler(async (req,res) => {
 //@access Private
 
 const deleteGoal = asyncHandler(async (req,res) => {
-    const goal = await Goal.findById(req.params.id)
+    const goal = await Goal.findByIdAndDelete(req.params.id)
 
     if (!goal) {
       res.status(400)
       throw new Error('Goal not found')
     }
 
-    await goal.remove()
+    // await goal.remove();
   
     res.status(200).json({id: req.params.id})
 })
